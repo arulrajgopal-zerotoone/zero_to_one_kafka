@@ -1,0 +1,32 @@
+1. setup Azure VM with Rdp & Google Chrome
+2. Download java, visualstudiocode and Install java, visualstudiocode and "Extension pack for java"
+3. Download Kafka, extract the folder and configure bashrc
+PATH="$PATH:~/kafka_2.13-3.1.0/bin"
+
+
+4. Start Zookeeper
+zookeeper-server-start.sh ~/kafka_2.13-3.1.0/config/zookeeper.properties
+5. Start Kafka
+kafka-server-start.sh ~/kafka_2.13-3.1.0/config/server.properties
+
+
+6.Create Topic, List Topic, Describe Topic
+kafka-topics.sh --bootstrap-server localhost:9092 --topic demo_java --create --partitions 3 --replication-factor 1
+kafka-topics.sh --bootstrap-server localhost:9092 --list
+kafka-topics.sh --bootstrap-server localhost:9092 --topic demo_java --describe
+kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic demo_java
+
+7.Start Producer at CLI
+kafka-console-producer.sh --bootstrap-server localhost:9092 --topic demo_java
+
+8.Start Consumer at CLI
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic demo_java
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic demo_java --from-beginning
+
+
+Step 7 & 8 is not required if we run kafka through IDE, but need to install dependencies 
+List of Dependency
+a) Apache Kafka 3.1.1
+b) SLF4J API Module 1.7.36
+c) SLF4J Simple Provider 1.7.36
+versions can be changed, but the mentioned version tested.
